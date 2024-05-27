@@ -1,20 +1,3 @@
-function require(modulePath) {
-    const resolvedPath = path.resolve(__dirname, modulePath);
-
-    if (customRequire.cache[resolvedPath]) {
-        return customRequire.cache[resolvedPath].exports;
-    }
-
-    const module = {
-        exports: {}
-    };
-
-    const moduleFunction = new Function('module', 'exports', 'require', 'global', fs.readFileSync(resolvedPath, 'utf8'));
-    moduleFunction(module, module.exports, customRequire, global);
-
-    customRequire.cache[resolvedPath] = module;
-    return module.exports;
-}
 
 const express = require('express');
 const fetch = require('node-fetch');
