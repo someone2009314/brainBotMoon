@@ -1,32 +1,3 @@
-function require(modulePath) {
-    // Resolve the absolute path of the module
-    const resolvedPath = path.resolve(__dirname, modulePath);
-
-    // Check if the module is already cached
-    if (customRequire.cache[resolvedPath]) {
-        return customRequire.cache[resolvedPath].exports;
-    }
-
-    // Create a new module object
-    const module = {
-        exports: {}
-    };
-
-    // Execute the module code within a closure
-    // to provide module-specific scope
-    const moduleFunction = new Function('module', 'exports', 'require', 'global', fs.readFileSync(resolvedPath, 'utf8'));
-    moduleFunction(module, module.exports, customRequire, global);
-
-    // Cache the module
-    customRequire.cache[resolvedPath] = module;
-
-    // Return the module's exports
-    return module.exports;
-}
-
-
-
-
 
 
 const express = require("express");
