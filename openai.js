@@ -12,7 +12,7 @@ async function sendToOpenAI() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${TEST_1}' // Replace with your OpenAI API key
+          'Authorization': 'Bearer ${{ secrets.TEST_1 }}' // Replace with your OpenAI API key
         },
         body: JSON.stringify({
           temperature: 0.7,
