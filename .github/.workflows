@@ -1,0 +1,15 @@
+name: Example Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Example Step
+        run: |
+          echo "My secret value is ${{ secrets.API_KEY }}"
