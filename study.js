@@ -99,14 +99,15 @@ async function checkAnswer() {
 */
 
 
-
 async function question() {
   document.getElementById("question").innerText = "loading..";
   document.getElementById("check").innerHTML = "";
+  
   if (document.querySelector("#answerArea")) {
     document.getElementById("answerArea").remove();
     document.getElementById("enterButton").remove();
   }
+
   const newTextArea = document.createElement("textarea");
   newTextArea.id = "answerArea";
   newTextArea.rows = "7";
@@ -116,12 +117,14 @@ async function question() {
   newButton.className = "btn btn-secondary";
   newButton.textContent = "Check Answer";
   newButton.onclick = checkAnswer;
-  
-  grade = localStorage.getItem('grade');
-  type = localStorage.getItem('type');
-  topic = localStorage.getItem('topic');
-  subject = localStorage.getItem('subject');
-                              
+
+  const grade = localStorage.getItem('grade');
+  const type = localStorage.getItem('type');
+  const topic = localStorage.getItem('topic');
+  const subject = localStorage.getItem('subject');
+
+  console.log("API Key:", window.TEST_1); // Debugging line
+  console.log(`Generating question for a ${grade} grader on ${subject} (${topic}) in a ${type} type`);
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -144,7 +147,8 @@ async function question() {
     });
 
     if (!response.ok) {
-      console.log(response.error);
+      const errorText = await response.text();
+      console.log("Response Error:", errorText); // Debugging line
       throw new Error("Failed to fetch response from OpenAI API");
     }
 
@@ -168,6 +172,9 @@ async function question() {
 async function checkAnswer() {
   const answerVar = document.getElementById("answerArea").value;
   const questionVar = document.getElementById("question").innerHTML;
+
+  console.log("Checking answer for:", questionVar); // Debugging line
+
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -189,7 +196,8 @@ async function checkAnswer() {
     });
 
     if (!response.ok) {
-      console.log(response.error);
+      const errorText = await response.text();
+      console.log("Response Error:", errorText); // Debugging line
       throw new Error("Failed to fetch response from OpenAI API");
     }
 
@@ -206,4 +214,3 @@ async function checkAnswer() {
 
 window.question = question;
 window.checkAnswer = checkAnswer;
-
