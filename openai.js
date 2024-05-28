@@ -1,12 +1,4 @@
 
-const express = require('express');
-const fetch = require('node-fetch');
-require('dotenv').config(); // Load environment variables from .env file
-
-const app = express();
-const port = process.env.PORT || 3000;
-
-app.use(express.json());
 
 async function sendToOpenAI() {
     const userInput = document.getElementById('userInput').value;
