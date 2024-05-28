@@ -116,6 +116,12 @@ async function question() {
   newButton.className = "btn btn-secondary";
   newButton.textContent = "Check Answer";
   newButton.onclick = checkAnswer;
+  
+  grade = localStorage.getItem('grade');
+  type = localStorage.getItem('type');
+  topic = localStorage.getItem('topic');
+  subject = localStorage.getItem('subject');
+                              
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
