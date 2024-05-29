@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -18,7 +18,10 @@ jobs:
 
     - name: Build and deploy
       run: |
-
+        # Add your build commands here if necessary
+        # For example:
+        # npm install
+        # npm run build
         echo "Build step if needed"
 
     - name: Deploy to GitHub Pages
@@ -26,4 +29,3 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
-
