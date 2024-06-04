@@ -1,4 +1,5 @@
-/*
+const TEST_1 = process.env.TEST_1;
+
 async function question() {
   document.getElementById("question").innerText = "loading..";
   document.getElementById("check").innerHTML = "";
@@ -21,7 +22,7 @@ async function question() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.TEST_1}`, // Replace with your OpenAI API key
+        Authorization: `Bearer ${TEST_1}`, // Replace with your OpenAI API key
       },
       body: JSON.stringify({
         temperature: 0.7,
@@ -96,9 +97,9 @@ async function checkAnswer() {
       "Error generating text. Please try again later.";
   }
 }
-*/
 
 
+/*
 async function question() {
   document.getElementById("question").innerText = "loading..";
   document.getElementById("check").innerHTML = "";
@@ -214,3 +215,4 @@ async function checkAnswer() {
 
 window.question = question;
 window.checkAnswer = checkAnswer;
+*/
